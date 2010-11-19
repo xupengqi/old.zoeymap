@@ -1,0 +1,19 @@
+<dl>
+	<dt><label>Bounds:</label></dt>
+	<dd>NE: <span id="northeast"></span></dd>
+	<dd style="margin-left: 101px; ">SW: <span id="southwest"></span></dd>
+</dl>
+<dl id="broadcast_title_combo">
+	<dt><label for="title">Title:</label></dt>
+	<dd><input type="text" name="title" id="title" size="32" maxlength="512" /><span class="status" style="color: red;"></span></dd>
+</dl>
+<dl id="broadcast_text_combo">
+	<dt><label for="text">Text:</label></dt>
+	<dd><textarea style="vertical-align: middle; height: 200px; width: 214px;" name="text" id="text"></textarea> (optional)</dd>
+</dl>
+<dl style="text-align: right;">
+	<dd>
+		<button type="button" name="submit" id="submit" onclick="return add_broadcast();">Add</button>
+		<button type="button" name="cancel" id="cancel" onclick="return cancel_solo();">Cancel</button>
+	</dd>
+</dl>

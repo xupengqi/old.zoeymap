@@ -1,0 +1,21 @@
+<script type="text/javascript" src="ext/google/popuplib.js"></script>
+<script type="text/javascript">
+	var upgradeToken = function() {
+	  window.location = '[[redirect_to]]';
+	};
+	var extensions = [[extensions]];
+	var googleOpener = popupManager.createPopupOpener({
+	  'realm' : '[[realm]]',
+	  'opEndpoint' : 'https://www.google.com/accounts/o8/ud',
+	  'returnToUrl' : '[[return_to]]',
+	  'onCloseHandler' : upgradeToken,
+	  'shouldEncodeUrls' : true,
+	  'extensions' : extensions
+	});
+	$(document).ready(function () {
+	  jQuery('.google_login').click(function() {
+	    googleOpener.popup(450, 500);
+	    return false;
+	  });
+	});
+</script>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<style type="text/css">
+/*****************************************************************
+ * Copyright (c) 2010, Yahoo! Inc. All rights reserved.
+ * Code licensed under the BSD License:
+ * http://developer.yahoo.com/yui/license.html
+ * version: 2.8.1
+ * http://yui.yahooapis.com/2.8.1/build/reset/reset-min.css
+ *****************************************************************/
+html{color:#000;background:#FFF;}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,p,blockquote,th,td{margin:0;padding:0;}table{border-collapse:collapse;border-spacing:0;}fieldset,img{border:0;}address,caption,cite,code,dfn,em,strong,th,var,optgroup{font-style:inherit;font-weight:inherit;}del,ins{text-decoration:none;}li{list-style:none;}caption,th{text-align:left;}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}q:before,q:after{content:'';}abbr,acronym{border:0;font-variant:normal;}sup{vertical-align:baseline;}sub{vertical-align:baseline;}legend{color:#000;}input,button,textarea,select,optgroup,option{font-family:inherit;font-size:inherit;font-style:inherit;font-weight:inherit;}input,button,textarea,select{*font-size:100%;}
+
+
+	html { height: 100% }
+	body { height: 100%; margin: 0px; padding: 0px; font:12px/17px Arial, Helvetica, sans-serif; }
+	
+	a { text-decoration: none; }
+	a:hover { text-decoration: underline; }
+	
+	
+	#map_canvas { height: 100% }
+	
+	#menu { text-align: right; }
+	#menu a { margin: 3px; }
+	
+	fieldset { background: white; padding: 3px; border: 1px solid rgb(204, 204, 204); opacity: 0.9; }
+	fieldset legend { border: 1px solid #ccc; background: #ededed; font-weight: bold; padding: 3px; margin-right: 20px; }
+	fieldset dl { width: 500px; }
+	fieldset dl dt { width: 100px; display: inline-block; text-align: right; vertical-align: top; }
+	fieldset dl dd { margin: 0;  display: inline-block; width: 300px; }
+	
+	.login img { vertical-align: middle; }
+	
+	.player { font-weight: bold; }
+	.broadcast { background: url("image/signal_16.png") no-repeat; padding-left: 20px; }
+	
+	#bc_op { border: 1px solid rgb(204, 204, 204); background: none repeat scroll 0% 0% rgb(239, 239, 239); }
+	
+	.bc_post { border: 1px solid #efefef; padding: 3px; margin-top: 3px; margin-bottom: 3px; }
+	.bc_user { margin-right: 5px; font-weight: bold; font-size: 11px; }
+	.bc_post_date { font-size: 11px; color: rgb(119, 119, 119); }
+	
+	#profile_settings span { font-size: 11px; color: #777; }
+	#profile_settings input[type="button"] { float: right; }
+</style>
+
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="ext/jquery.fancybox-1.3.1/fancybox/jquery.mousewheel-3.0.2.pack.js"></script>
+<script type="text/javascript" src="ext/jquery.fancybox-1.3.1/fancybox/jquery.fancybox-1.3.1.js"></script>
+<script type="text/javascript" src="js/zm_user.js"></script>
+<script type="text/javascript">
+[[zm_user]]
+</script>
+<script type="text/javascript" src="js/js.php?section=header"></script>
+
+<link rel="stylesheet" type="text/css" href="ext/jquery.fancybox-1.3.1/fancybox/jquery.fancybox-1.3.1.css" media="screen" />
+</head>
+<body>
+	<div id="map_canvas" style="width:100%; height:100%;"></div>
+	[[menu]]
+	
+	<div id="bounds" style="position: absolute; top: 25px; right: 5px; background: white; display: none;">
+	</div>
+	
+	<fieldset style="position: absolute; top: 65px; right: 5px;">
+    	<legend><span id="number_of_items"></span> Players In This Area</legend>
+    	<div id="info" style="max-height: 500px; overflow: auto;"></div>
+	</fieldset>
+	
+	<fieldset style="position: absolute; top: 5px; left: 5px; ">
+    	<legend><span id="number_of_broadcasts"></span> Broadcasts In This Area</legend>
+    	<div id="broadcasts" style="max-height: 500px; max-width: 300px; padding: 3px; overflow: auto;"></div>
+    	<div style="">
+    		<button style="float: right;" type="button" name="new_broadcast" id="new_broadcast" onclick="return new_broadcast();">New Broadcast</button>
+    		<span id="new_broadcast_message" style="display: none; font-size: 11px; border-top: 1px solid #ccc;">You are not strong enough to broadcast at this level.</span>
+    	</div>
+	</fieldset>
+	
+	<fieldset id="broadcast_info" style="position: absolute; top: 5px; left: 315px; max-width: 500px; overflow: auto; display: none;">
+    	<legend id="bc_title"></legend>
+    	<div id="bc_body" style=" max-height: 500px; overflow: auto;">
+    	</div>
+    	<div style="text-align: right;"><a href="#" onclick="return close_broadcast();">Close</a></div>
+	</fieldset>
+	[[new_location]][[new_broadcast]]
+	<script type="text/javascript" src="js/js.php?section=footer"></script>
+	<script type="text/javascript">
+	zm_map.init();
+	</script>
+	[[google_login]]
+</body>
+</html>

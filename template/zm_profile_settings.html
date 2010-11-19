@@ -1,0 +1,34 @@
+<fieldset id="profile_settings">
+	<input type="radio" name="default_view" value="default" id="view_default" /><label for="view_default">Default <span>Try to detect location, if failed, use view port from previous visit.</span></label><br/>
+	<input type="radio" name="default_view" value="current" id="view_current" /><label for="view_current">User current view port.</label><br/>
+	<input type="radio" name="default_view" value="detect" id="view_detect" /><label for="view_detect">Always detect my location.</label><br/>
+	<input type="radio" name="default_view" value="last" id="view_last" /><label for="view_last">Use view port from last time.</label><br/>
+	<input type="button" name="save_profile_settings" value="Save" onclick="profile_settings.save(); return false;" />
+</fieldset>
+
+<script type="text/javascript">
+
+var profile_settings = new function() {
+	
+	this.init = function () {
+		$("#view_" + zm_user.default_view).attr("checked", "checked");
+	};
+	
+	this.save = function () {
+		zm_user.default_view = $("input[name='default_view']:checked").val();
+	    $.post("profile_settings.php", {
+	    	action: "save",
+	    	view: zm_user.default_view,
+	    	lat: zm_map.map.getCenter().lat(),
+	    	lng: zm_map.map.getCenter().lng(),
+	    	zoom: zm_map.map.getZoom()
+	    },
+		function(data) {
+	    });
+	    
+	    $.fancybox.close();
+	}
+};
+
+profile_settings.init();
+</script>
